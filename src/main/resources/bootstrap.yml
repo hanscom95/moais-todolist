@@ -1,0 +1,53 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: moais-todo
+  datasource:
+    todolist:
+      driver-class-name: com.mysql.jdbc.Driver
+      jdbc-url: jdbc:mysql://todo-db:3306/moais?characterEncoding=UTF-8&serverTimezone=Asia/Seoul&useSSL=false&allowPublicKeyRetrieval=true
+      url: jdbc:mysql://todo-db:3306/moais?characterEncoding=UTF-8&serverTimezone=Asia/Seoul&useSSL=false&allowPublicKeyRetrieval=true
+      username: thmoon
+      password: thmoon
+    hikari:
+      connection-timeout: 5000
+      maximum-pool-size: 5
+      max-lifetime: 1800000
+      idle-timeout: 600000
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  messages:
+    always-use-message-format: false
+    basename: messages/messages
+    cache-duration:
+    encoding: UTF-8
+    fallback-to-system-locale: true
+    use-code-as-default-message: false
+  jpa:
+    open-in-view: false
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: false
+        generate_statistics: false
+        dialect: org.hibernate.dialect.MariaDB10Dialect
+    hibernate:
+      ddl-auto: none
+
+logging:
+  level:
+    org:
+      springframework: debug
+      web: debug
+
+locale:
+  list: ko_KR, en_US
+
+jwt:
+  secret: xfX9nyUC9sTvRuH
+  expiration: 600000
+  prefix: "Bearer "
+  header: Authorization

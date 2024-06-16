@@ -1,0 +1,48 @@
+version: '2.4'
+
+services:
+  todo-db:
+    image: mysql:8.0
+    #platform: linux/amd64 # mac m series
+    container_name: todo-db
+    ports:
+      - 3306:3306
+    volumes:
+      - todo-mysql-data:/var/lib/mysql
+      - ./mysql/initdb.d:/docker-entrypoint-initdb.d
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: thmoon
+      MYSQL_DATABASE: moais
+      MYSQL_USER: thmoon
+      MYSQL_PASSWORD: thmoon
+    networks:
+      - todo-network
+    command:
+      - '--bind-address=0.0.0.0'
+      - '--character-set-server=utf8'
+      - '--collation-server=utf8_unicode_ci'
+
+  todo-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    #platform: linux/amd64 # mac m series
+    ports:
+      - 8090:8090
+    environment:
+      - TZ=UTC
+#    mem_limit: 512m
+#    cpus: 0.5
+    container_name: todo-service
+    restart: always
+    networks:
+      - todo-network
+    depends_on:
+      - todo-db
+
+networks:
+  todo-network:
+
+volumes:
+  todo-mysql-data:
