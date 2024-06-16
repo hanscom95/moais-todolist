@@ -68,19 +68,19 @@ public class UserController {
 		return userApiService.signupUser(userRequestDto);
 	}
 
-	// @PostMapping(path = "/login")
-	// @Operation(summary = "loginUser - user login")
-	// @ApiResponses( value = {
-	// 	@ApiResponse(responseCode = "200", description = "success", content = {}, headers = {
-	// 		@Header(name = "Authorization", description = "Bearer Token", schema = @Schema(type = "string"), required = true)
-	// 	}),
-	// 	@ApiResponse(responseCode = "400", description = "fail", content = @Content(schema = @Schema(implementation = DefaultErrorResponseDto.class)))
-	// })
-	// public ResponseEntity<Object> loginUser(
-	// 	@RequestBody @Valid UserLoginRequestDto userLoginRequestDto
-	// ){
-	// 	return userDetailService.loginUser(userLoginRequestDto);
-	// }
+	@PostMapping(path = "/login")
+	@Operation(summary = "loginUser - user login")
+	@ApiResponses( value = {
+		@ApiResponse(responseCode = "200", description = "success", content = {}, headers = {
+			@Header(name = "Authorization", description = "Bearer Token", schema = @Schema(type = "string"), required = true)
+		}),
+		@ApiResponse(responseCode = "400", description = "fail", content = @Content(schema = @Schema(implementation = DefaultErrorResponseDto.class)))
+	})
+	public ResponseEntity<Object> loginUser(
+		@RequestBody @Valid UserLoginRequestDto userLoginRequestDto
+	){
+		return userApiService.loginUser(userLoginRequestDto);
+	}
 
 	@PutMapping(path = "/user/withdrawal")
 	@Operation(summary = "회원탈퇴 - withdrawal")

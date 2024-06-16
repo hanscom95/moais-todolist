@@ -27,7 +27,7 @@ public class UserLoginRequestDto {
     @NotEmpty
     @NotBlank
     @Schema(description = "User id", example = "id")
-    String id;
+    String userId;
 
     @Schema(description = "password", example = "특수문자+숫자+대소문자, 8글자이상")
     @Size(min = 8, max = 20)

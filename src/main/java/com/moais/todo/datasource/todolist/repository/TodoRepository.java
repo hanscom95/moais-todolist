@@ -20,7 +20,6 @@ public interface TodoRepository extends JpaRepository<TodoEntity, Long> {
 
 	List<TodoEntity> findTodoEntitiesByUserUidOrderByCreateAtDesc(@Param("userUid") Long userUid);
 	Optional<TodoEntity> findTodoEntityByUidAndUserUid(@Param("uId") Long uId, @Param("userUid") Long userUid);
-
 	Optional<TodoEntity> findTop1TodoEntityByUserUidOrderByCreateAtDesc(@Param("userUid") Long userUid);
 
 }

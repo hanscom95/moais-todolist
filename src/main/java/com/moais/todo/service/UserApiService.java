@@ -161,7 +161,7 @@ public class UserApiService implements UserDetailsService {
 	@Transactional(readOnly = false, isolation = Isolation.SERIALIZABLE)
 	public ResponseEntity<Object> withdrawal(UserLoginRequestDto userLoginRequestDto) {
 		try {
-			Optional<UserEntity> userEntityOptional = userRepository.findUserEntityById(userLoginRequestDto.getId());
+			Optional<UserEntity> userEntityOptional = userRepository.findUserEntityById(userLoginRequestDto.getUserId());
 			log.info("withdrawal userEntityOptional : {}", userEntityOptional);
 			log.info("withdrawal userEntityOptional get : {}", userEntityOptional.get());
 			if (userEntityOptional.isEmpty()) {

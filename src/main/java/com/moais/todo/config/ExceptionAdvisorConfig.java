@@ -24,7 +24,7 @@ public class ExceptionAdvisorConfig {
 		for (FieldError fieldError : bindingResult.getFieldErrors()) {
 			builder.append("[");
 			builder.append(fieldError.getField());
-			builder.append("](은)는 ");
+			builder.append("] ");
 			builder.append(fieldError.getDefaultMessage());
 		}
 
